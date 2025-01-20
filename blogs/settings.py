@@ -31,7 +31,8 @@ SECRET_KEY = 'django-insecure-n0vup@31&v7u-aq4kfily=ngm+bwkbp=&!fh^#ahmn&h^21c=o
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'generativeafricablogs.onrender.com'
+    'generativeafricablogs.onrender.com',
+    '127.0.0.1'
 ]
 
 

@@ -16,7 +16,7 @@ class BlogSerializer(serializers.ModelSerializer):
         return None
 
     def get_blog_images(self, obj):
-        blog_images = obj.blog_images.all()
+        blog_images = obj.blog_image.all()
         if blog_images:
             return BlogImageSerializer(blog_images, many=True).data
         return None
