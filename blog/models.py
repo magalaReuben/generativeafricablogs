@@ -19,7 +19,7 @@ class Blog(models.Model):
 class Section(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='sections')
     title = models.CharField(max_length=200, blank=True, null=True)
-    section_image = models.ImageField(upload_to='images/', null=True)
+    section_image = models.ImageField(upload_to='images/', null=True, blank=True)
     content = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -29,7 +29,7 @@ class Section(models.Model):
 class SubSection(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='subsections')
     title = models.CharField(max_length=200, blank=True, null=True)
-    sub_section_image = models.ImageField(upload_to='images/', null=True)
+    sub_section_image = models.ImageField(upload_to='images/', null=True, blank=True)
     content = models.TextField(blank=True, null=True)
 
     def __str__(self):
