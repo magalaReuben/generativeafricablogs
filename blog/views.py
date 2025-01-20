@@ -29,7 +29,6 @@ class GetBlog(APIView):
                 status=status.HTTP_404_NOT_FOUND
             )
         
-
 class GetAllBlogs(APIView):
     def get(self, request):
         blogs = Blog.objects.all()
