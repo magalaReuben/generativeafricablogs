@@ -14,7 +14,15 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+class BlogImage(models.Model):
+    alt = models.CharField(max_length=100)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_image')
+    image = models.ImageField(upload_to='images/')
 
+    def __str__(self):
+        return self.alt
+        
 
 class Section(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='sections')

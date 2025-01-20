@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Blog, Section, SubSection, Tag
+from .models import Blog, Section, SubSection, Tag, BlogImage
 
 class BlogSerializer(serializers.ModelSerializer):
     sections = serializers.SerializerMethodField()
-    # tags = serializers.SerializerMethodField()
+    blog_images = serializers.SerializerMethodField()
 
     class Meta:
         model = Blog
@@ -15,11 +15,16 @@ class BlogSerializer(serializers.ModelSerializer):
             return SectionSerializer(sections, many=True).data
         return None
 
-    # def get_tags(self, obj):
-    #     tags = obj.tags.all()
-    #     if tags:
-    #         return TagSerializer(tags, many=True).data
-    #     return None
+    def get_blog_images(self, obj):
+        blog_images = obj.blog_images.all()
+        if blog_images:
+            return TagSerializer(blog_images, many=True).data
+        return None
+    
+class BlogImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogImage
+        fields = '__all__'
 
 class SectionSerializer(serializers.ModelSerializer):
     subsections = serializers.SerializerMethodField()
