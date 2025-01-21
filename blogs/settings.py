@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+
+AZURE_ACCOUNT_NAME = os.getenv("AZURE_ACCOUNT_NAME")
+AZURE_ACCOUNT_KEY = os.getenv("AZURE_ACCOUNT_KEY")
+AZURE_CONTAINER_NAME = os.getenv("AZURE_CONTAINER_NAME")
+AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.blob.core.windows.net"
+
+# Media files
+DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
+MEDIA_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER_NAME}/"
