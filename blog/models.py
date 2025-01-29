@@ -16,9 +16,11 @@ class Blog(models.Model):
         return self.title
     
 class BlogImage(models.Model):
-    alt = models.CharField(max_length=100)
+    alt = models.CharField(max_length=100, null=True, blank=True)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_image')
     image = models.ImageField(upload_to='images/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.alt
@@ -29,6 +31,8 @@ class Section(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     section_image = models.ImageField(upload_to='images/', null=True, blank=True)
     content = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.blog.title} : " + self.title
@@ -39,6 +43,8 @@ class SubSection(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     sub_section_image = models.ImageField(upload_to='images/', null=True, blank=True)
     content = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.section.blog.title}-" + f"{self.section.title} : " + self.title
